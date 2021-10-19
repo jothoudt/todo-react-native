@@ -1,8 +1,14 @@
 import React from 'react'
-import {  SafeAreaView, StyleSheet, TextInput } from 'react-native'
+import { useDispatch } from 'react-redux';
+import {  SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
 
 export default function AddTask(){
     const [text,onChangeText] = React.useState("Please add a task");
+    const dispatch = useDispatch()
+    const addTask=()=>{
+        dispatch({type:'ADD_A_TASK', payload:text})
+        alert('task added')
+    }
 
     return(
         <SafeAreaView> 
@@ -11,7 +17,12 @@ export default function AddTask(){
                 onChangeText={onChangeText}
                 value={text}
             />
-            
+            <Button
+                onPress={addTask}
+                title="Add Task"
+                color="#F037A5"
+                accessibilityLabel="Submit a task"
+            />
         </SafeAreaView>
     )
 }

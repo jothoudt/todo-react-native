@@ -1,20 +1,15 @@
-// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View} from 'react-native';
-import AddTask from './components/AddTask/AddTask';
-import Title from './components/Title/Title';
-
+import { AppRegistry } from 'react-native';
+import {name as appName} from './app.json'
+import App from './App';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 import rootReducer from './redux/reducer/_root.reducer';
 import rootSaga from './redux/saga/_root.saga';
 import createSagaMiddleware from 'redux-saga';
-import Home from './components/Home/Home';
 
-const Stack = createStackNavigator();
+
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewareList= process.env.NODE_ENV === 'development' ?
@@ -28,12 +23,14 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga)
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <Home />
-    </Provider>
-    
-  );
-}
+
+const ReactNativeTodo = () =>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  
+  AppRegistry.registerComponent(appName, () => ReactNativeTodo)
+
+
+
 
