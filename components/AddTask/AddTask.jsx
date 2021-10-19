@@ -11,6 +11,7 @@ export default function AddTask(){
                 onChangeText={onChangeText}
                 value={text}
             />
+            
         </SafeAreaView>
     )
 }
