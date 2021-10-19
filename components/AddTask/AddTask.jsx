@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import {  SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
 
 export default function AddTask(){
-    const [text,onChangeText] = React.useState("Please add a task");
+    const [task,onChangeTask] = React.useState("Please add a task");
     const dispatch = useDispatch()
     const addTask=()=>{
-        dispatch({type:'ADD_A_TASK', payload:text})
+        dispatch({type:'ADD_NEW_TASK', payload:{task: task}})
         alert('task added')
     }
 
@@ -14,8 +14,8 @@ export default function AddTask(){
         <SafeAreaView> 
             <TextInput
                 style={styles.input}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={onChangeTask}
+                value={task}
             />
             <Button
                 onPress={addTask}

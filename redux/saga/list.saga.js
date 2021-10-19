@@ -1,5 +1,8 @@
 import {put,takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
+import {URI} from '@env';
+
+const uri = URI;
 
 function* listSaga(){
     yield takeEvery('FETCH_TASKS', fetchTasks);
@@ -10,8 +13,8 @@ function* listSaga(){
 //POST---to add a task to the database
 function* addTasks(action){
     try{
-        console.log("in POST tasks")
-        yield axios.post('/api/tasks/', action.payload)
+        console.log("in POST tasks", action.payload)
+        yield axios.post(`${uri}/api/tasks/`, action.payload)
         //get updated task list after adding task
         yield put({type:'FETCH_TASKS'})
     }   //end try
@@ -23,7 +26,7 @@ function* addTasks(action){
 function* fetchTasks(){
     try{
         console.log('in GET tasks')
-        const response= yield axios.get('/api/tasks')
+        const response= yield axios.get(`${uri}/api/tasks/`)
         console.log(response.data)
         //to store tasks in reducer
         yield put ({type:'SET_TASKS', payload:response.data})
