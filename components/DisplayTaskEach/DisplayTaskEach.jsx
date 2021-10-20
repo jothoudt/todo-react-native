@@ -61,7 +61,7 @@ function DisplayTasksEach({task}){
             <DataTable.Row style={{width:"100%", margin:5, padding:0}}>
                 <DataTable.Cell style={{width:"30%"}}>{task.task}</DataTable.Cell>
                 <DataTable.Cell style={{width:"30%"}}>{dateAddedFormat()}</DataTable.Cell>
-                <DataTable.Cell style={{width:"30%"}}>{task.completed ? 'Completed' : 
+                <DataTable.Cell style={{width:"30%"}}>{task.completed ? dateCompleteFormat(): 
                     <Button
                         onPress={completeTask}
                         title="Complete"

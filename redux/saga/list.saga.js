@@ -39,7 +39,7 @@ function* fetchTasks(){
 function* completeTask(action){
     try{
         console.log('in Complete task',action.payload)
-        yield axios.put('/api/tasks/' + action.payload )
+        yield axios.put(`${uri}/api/tasks/` + action.payload )
         //to fetch updated list of tasks after completing a task
         yield put({type:'FETCH_TASKS'})
     }   //end try
@@ -50,7 +50,7 @@ function* completeTask(action){
 //DELETE---to delete a task from the database
 function* deleteTask(action){
     console.log('in delete task')
-    yield axios.delete('/api/tasks/' + action.payload)
+    yield axios.delete(`${uri}/api/tasks/` + action.payload)
     //fetch updated task list after deleting task
     yield put({type:'FETCH_TASKS'})
 }   //end deleteTask
