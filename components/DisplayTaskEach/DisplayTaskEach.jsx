@@ -53,15 +53,17 @@ function DisplayTasksEach({task}){
         else if(task.date_completed){
             formattedDate = task.date_completed.slice(0,16)
         }
-        return formattedDate;
+        return <Text style={{width:"85%", fontSize:"14px", textDecorationStyle:"solid"}}>{formattedDate}</Text>;
     }   //end dateFormate
     //return a row of the task information
     return (
             <View>
-            <DataTable.Row style={task.completed ? {width:"100%", padding:2, backgroundColor:"#F037A5"}:{width:"100%",padding:2}}>
-                <DataTable.Cell style={task.completed ? {width:"25%", textDecoration:"line-through"}: {width:"25%"}}>{task.task}</DataTable.Cell>
+            <DataTable.Row style={task.completed ? {width:"100%", padding:2, backgroundColor:"#F037A5",borderBottomWidth:"1px", borderBottomColor:"#1E3163"}:{width:"100%",padding:2,borderBottomWidth:"1px", borderBottomColor:"#1E3163"}}>
+                <View style={task.completed ? {width:"25%", textDecoration:"line-through", justifyContent:"center"}: {width:"25%",justifyContent:"center"}}>
+                    <Text style={{width:"85%", fontSize:"14px"}}>{task.task}</Text>
+                </View>
                 <DataTable.Cell style={task.completed ? {width:"28%%", textDecoration:"line-through"}: {width:"28%"}}>{dateAddedFormat()}</DataTable.Cell>
-                <DataTable.Cell style={{width:"32%"}}>{task.completed ? dateCompleteFormat(): 
+                <View style={{width:"32%",justifyContent:"center"}}>{task.completed ? dateCompleteFormat(): 
                     // <Button
                     //     onPress={completeTask}
                     //     title="Complete"
@@ -73,9 +75,9 @@ function DisplayTasksEach({task}){
                     </TouchableOpacity>
                     }
 
-                </DataTable.Cell>
+                </View>
                 {/* <DataTable.Cell>{task.date_completed === null ? 'not yet completed' : dateCompleteFormat()}</DataTable.Cell> */}
-                <DataTable.Cell style={{width:"15%", flex:.5}}><DeleteForeverIcon onClick={deleteThisTask} /> </DataTable.Cell>
+                <DataTable.Cell style={{width:"15%", flex:.5}}><DeleteForeverIcon style={{margin:"10px"}} onClick={deleteThisTask} /> </DataTable.Cell>
             </DataTable.Row>
             </View>
     )
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
       complete_button: {
         flexDirection: 'row', 
         height: 35,
-        width: "99.8%", 
+        width: "99%", 
         backgroundColor: "#1E3163",
         alignItems: 'center',
         justifyContent: 'center',

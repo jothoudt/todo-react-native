@@ -29,7 +29,7 @@ function DisplayTasks({tasks}){
     //returns a table to display the tasks
     return(
         <View horizontal style={styles.container}>
-            <DataTable style={{width:"100%", marginTop:"25px"}}>
+            <DataTable style={{width:"99%", marginTop:"25px",borderWidth:"1px", borderColor:"#1E3163"}}>
                 <DataTable.Header style={{width:"100%", margin:0, padding:5,backgroundColor:"#1E3163"}}>
                     <DataTable.Title style={{width:"25%"}}><Text style={{color:"#F8F8F8"}}>Task</Text></DataTable.Title>
                     <DataTable.Title style={{width:"28%", color:"#f8f8f8"}}><Text style={{color:"#F8F8F8"}}>Date Added</Text></DataTable.Title>
