@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 // import { Rows, Cell } from 'react-native-table-component';
-import { FlatList, Button,StyleSheet, View, Text} from 'react-native';
+import { TouchableOpacity,StyleSheet, View, Text} from 'react-native';
 import { DataTable } from 'react-native-paper';
 // import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -62,12 +62,17 @@ function DisplayTasksEach({task}){
                 <DataTable.Cell style={task.completed ? {width:"25%", textDecoration:"line-through"}: {width:"25%"}}>{task.task}</DataTable.Cell>
                 <DataTable.Cell style={task.completed ? {width:"28%%", textDecoration:"line-through"}: {width:"28%"}}>{dateAddedFormat()}</DataTable.Cell>
                 <DataTable.Cell style={{width:"32%"}}>{task.completed ? dateCompleteFormat(): 
-                    <Button
-                        onPress={completeTask}
-                        title="Complete"
-                        color="#F037A5"
-                        accessibilityLabel="Complete a task"
-                    />}
+                    // <Button
+                    //     onPress={completeTask}
+                    //     title="Complete"
+                    //     color="#F037A5"
+                    //     accessibilityLabel="Complete a task"
+                    // />
+                    <TouchableOpacity onPress={completeTask} activeOpacity={0.95} style={styles.complete_button}>
+                        <Text style={styles.complete_button_text}>Complete</Text>
+                    </TouchableOpacity>
+                    }
+
                 </DataTable.Cell>
                 {/* <DataTable.Cell>{task.date_completed === null ? 'not yet completed' : dateCompleteFormat()}</DataTable.Cell> */}
                 <DataTable.Cell style={{width:"15%", flex:.5}}><DeleteForeverIcon onClick={deleteThisTask} /> </DataTable.Cell>
@@ -84,6 +89,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
+      complete_button: {
+        flexDirection: 'row', 
+        height: 35,
+        width: "99.8%", 
+        backgroundColor: "#1E3163",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "auto",
+        marginBottom:"auto",
+        borderRadius: 8,
+        elevation:3,
+    },
+      complete_button_text: {
+        padding:8,
+        fontSize: 12,
+        color: "#F8F8F8",
+    }
 });
 
 export default DisplayTasksEach;
