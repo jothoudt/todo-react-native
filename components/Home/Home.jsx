@@ -1,10 +1,11 @@
 import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
-import {  SafeAreaView, StyleSheet, TextInput, Button } from 'react-native'
+import {  SafeAreaView, StyleSheet, TextInput, Button, ScrollView } from 'react-native'
 import AddTask from '../AddTask/AddTask';
 import DisplayTasks from '../DisplayTask/DisplayTask';
 import Title from '../Title/Title';
+
 
 export default function Home(){
     //define dispatch
@@ -16,10 +17,12 @@ export default function Home(){
         dispatch({type:'FETCH_TASKS'})
         ,[]);
     return(
-        <SafeAreaView style={styles.container}> 
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scrollview}>
             <Title />
             <AddTask />
             <DisplayTasks tasks={tasks}/>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -32,4 +35,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: "#000000"
       },
+      scrollview:{
+          height:"100%",
+          width:"100%",
+      }
 });

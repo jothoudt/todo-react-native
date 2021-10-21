@@ -1,6 +1,6 @@
 import React from 'react'
 import DisplayTasksEach from '../DisplayTaskEach/DisplayTaskEach';
-import {StyleSheet,View, ScrollView} from 'react-native';
+import {StyleSheet,View, ScrollView, Text} from 'react-native';
 import { DataTable } from 'react-native-paper';
 // import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
@@ -31,11 +31,11 @@ function DisplayTasks({tasks}){
         <View horizontal style={styles.container}>
             <DataTable style={{width:"100%", marginTop:"25px"}}>
                 <DataTable.Header style={{width:"100%", margin:0, padding:5,backgroundColor:"#1E3163"}}>
-                    <DataTable.Title style={{width:"25%"}}>Task</DataTable.Title>
-                    <DataTable.Title style={{width:"28%", color:"#f8f8f8"}}>Date Added</DataTable.Title>
-                    <DataTable.Title style={{width:"32%", color:"#f8f8f8"}}>Completed</DataTable.Title>
+                    <DataTable.Title style={{width:"25%"}}><Text style={{color:"#F8F8F8"}}>Task</Text></DataTable.Title>
+                    <DataTable.Title style={{width:"28%", color:"#f8f8f8"}}><Text style={{color:"#F8F8F8"}}>Date Added</Text></DataTable.Title>
+                    <DataTable.Title style={{width:"32%", color:"#f8f8f8"}}><Text style={{color:"#F8F8F8"}}>Completed</Text></DataTable.Title>
                     {/* <DataTable.Title>Date Completed</DataTable.Title> */}
-                    <DataTable.Title style={{width:"15%", color:"#f8f8f8"}}>Delete</DataTable.Title>
+                    <DataTable.Title style={{flex:.5,width:"15%", color:"#f8f8f8"}}> <Text style={{color:"#F8F8F8"}}>Delete</Text></DataTable.Title>
                 </DataTable.Header>
                 {displayAllTasks()}
             </DataTable>

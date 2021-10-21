@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 // import { Rows, Cell } from 'react-native-table-component';
-import { FlatList, Button,StyleSheet, View} from 'react-native';
+import { FlatList, Button,StyleSheet, View, Text} from 'react-native';
 import { DataTable } from 'react-native-paper';
 // import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
@@ -58,10 +58,10 @@ function DisplayTasksEach({task}){
     //return a row of the task information
     return (
             <View>
-            <DataTable.Row style={{width:"100%", margin:5, padding:0}}>
-                <DataTable.Cell style={{width:"30%"}}>{task.task}</DataTable.Cell>
-                <DataTable.Cell style={{width:"30%"}}>{dateAddedFormat()}</DataTable.Cell>
-                <DataTable.Cell style={{width:"30%"}}>{task.completed ? dateCompleteFormat(): 
+            <DataTable.Row style={task.completed ? {width:"100%", padding:2, backgroundColor:"#F037A5"}:{width:"100%",padding:2}}>
+                <DataTable.Cell style={task.completed ? {width:"25%", textDecoration:"line-through"}: {width:"25%"}}>{task.task}</DataTable.Cell>
+                <DataTable.Cell style={task.completed ? {width:"28%%", textDecoration:"line-through"}: {width:"28%"}}>{dateAddedFormat()}</DataTable.Cell>
+                <DataTable.Cell style={{width:"32%"}}>{task.completed ? dateCompleteFormat(): 
                     <Button
                         onPress={completeTask}
                         title="Complete"
@@ -70,7 +70,7 @@ function DisplayTasksEach({task}){
                     />}
                 </DataTable.Cell>
                 {/* <DataTable.Cell>{task.date_completed === null ? 'not yet completed' : dateCompleteFormat()}</DataTable.Cell> */}
-                <DataTable.Cell style={{width:"10%"}}><DeleteForeverIcon onClick={deleteThisTask} /> </DataTable.Cell>
+                <DataTable.Cell style={{width:"15%", flex:.5}}><DeleteForeverIcon onClick={deleteThisTask} /> </DataTable.Cell>
             </DataTable.Row>
             </View>
     )
