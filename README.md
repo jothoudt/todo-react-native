@@ -8,3 +8,7 @@ This is my first time using React Native.
 # Technologies
 
 - React Native
+
+# Photos from Project
+
+    ![Photo of project on Phone Simulator with Metro Bundler](photos/ReactNativeTodoPhoto.png)
