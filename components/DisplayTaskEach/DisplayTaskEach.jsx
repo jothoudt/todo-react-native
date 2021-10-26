@@ -1,12 +1,13 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { MaterialIcons } from '@expo/vector-icons';
 // import { Rows, Cell } from 'react-native-table-component';
 import { TouchableOpacity,StyleSheet, View, Text} from 'react-native';
 import { DataTable } from 'react-native-paper';
 // import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-function DisplayTasksEach({task}){
+export default function DisplayTasksEach({task}){
     //define dispatch
     const dispatch= useDispatch()
     //function triggers dispatch to complete a tasks
@@ -36,7 +37,7 @@ function DisplayTasksEach({task}){
         else {
             formattedDateAdded= thisDate.slice(0,10)
         }   //end else
-        return formattedDateAdded;
+        return <Text style={task.completed ? {fontSize:14, textDecorationLine:"line-through"} : { fontSize:14}}>{formattedDateAdded}</Text>;
     }
     //define formatteddate
     let formattedDate;
@@ -53,31 +54,23 @@ function DisplayTasksEach({task}){
         else if(task.date_completed){
             formattedDate = task.date_completed.slice(0,16)
         }
-        return <Text style={{width:"85%", fontSize:"14px", textDecorationStyle:"solid"}}>{formattedDate}</Text>;
+        return <Text style={task.completed ? {width:"85%", fontSize:14, textDecorationStyle:"solid"} : {width:"85%", fontSize:14, textDecorationStyle:"solid"}}>{formattedDate}</Text>;
     }   //end dateFormate
     //return a row of the task information
     return (
             <View>
-            <DataTable.Row style={task.completed ? {width:"100%", padding:2, backgroundColor:"#F037A5",borderBottomWidth:"1px", borderBottomColor:"#1E3163"}:{width:"100%",padding:2,borderBottomWidth:"1px", borderBottomColor:"#1E3163"}}>
-                <View style={task.completed ? {width:"25%", textDecoration:"line-through", justifyContent:"center"}: {width:"25%",justifyContent:"center"}}>
-                    <Text style={{width:"85%", fontSize:"14px"}}>{task.task}</Text>
+            <DataTable.Row style={task.completed ? {width:"100%", padding:2, backgroundColor:"#F037A5",borderBottomWidth:1, borderBottomColor:"#1E3163"}:{width:"100%",padding:2,borderBottomWidth:1, borderBottomColor:"#1E3163"}}>
+                <View style={{width:"25%", justifyContent:"center",}}>
+                    <Text style={task.completed ? {width:"85%", fontSize:14, textDecorationLine:"line-through"} : {width:"85%", fontSize:14}}>{task.task}</Text>
                 </View>
-                <DataTable.Cell style={task.completed ? {width:"28%%", textDecoration:"line-through"}: {width:"28%"}}>{dateAddedFormat()}</DataTable.Cell>
+                <DataTable.Cell style={{width:"28%%"}}>{dateAddedFormat()}</DataTable.Cell>
                 <View style={{width:"32%",justifyContent:"center"}}>{task.completed ? dateCompleteFormat(): 
-                    // <Button
-                    //     onPress={completeTask}
-                    //     title="Complete"
-                    //     color="#F037A5"
-                    //     accessibilityLabel="Complete a task"
-                    // />
                     <TouchableOpacity onPress={completeTask} activeOpacity={0.95} style={styles.complete_button}>
                         <Text style={styles.complete_button_text}>Complete</Text>
                     </TouchableOpacity>
                     }
-
                 </View>
-                {/* <DataTable.Cell>{task.date_completed === null ? 'not yet completed' : dateCompleteFormat()}</DataTable.Cell> */}
-                <DataTable.Cell style={{width:"15%", flex:.5}}><DeleteForeverIcon style={{margin:"10px"}} onClick={deleteThisTask} /> </DataTable.Cell>
+                <DataTable.Cell style={{width:"15%", flex:.5}}><MaterialIcons name="delete-forever" size={24} color="black" style={{margin:10}} onClick={deleteThisTask} /> </DataTable.Cell>
             </DataTable.Row>
             </View>
     )
@@ -85,25 +78,25 @@ function DisplayTasksEach({task}){
 
 const styles = StyleSheet.create({
     container: {
-        height: 350,
+        // height: "350px",
         width:"100%",
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#F8F8F8",
+        alignItems: "center",
+        justifyContent: "center",
       },
       complete_button: {
         flexDirection: 'row', 
         height: 35,
         width: "99%", 
         backgroundColor: "#1E3163",
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: "auto",
         marginBottom:"auto",
         borderRadius: 8,
-        elevation:3,
+        elevation: 3,
     },
       complete_button_text: {
         padding:8,
@@ -111,5 +104,3 @@ const styles = StyleSheet.create({
         color: "#F8F8F8",
     }
 });
-
-export default DisplayTasksEach;

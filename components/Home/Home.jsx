@@ -2,9 +2,9 @@ import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import {  SafeAreaView, StyleSheet, TextInput, Button, ScrollView } from 'react-native'
+import Title from '../Title/Title';
 import AddTask from '../AddTask/AddTask';
 import DisplayTasks from '../DisplayTask/DisplayTask';
-import Title from '../Title/Title';
 
 
 export default function Home(){
@@ -12,16 +12,19 @@ export default function Home(){
     const dispatch=useDispatch()
     //get tasks from the store
     const tasks= useSelector((store)=>{return store.list})
+    const onLoad=()=>{
+        dispatch({type:'FETCH_TASKS'})
+    }
     //to load the tasks from the database
     useEffect(()=>
-        dispatch({type:'FETCH_TASKS'})
+        onLoad()
         ,[]);
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollview}>
-            <Title />
-            <AddTask />
-            <DisplayTasks tasks={tasks}/>
+                <Title />
+                <AddTask />
+                <DisplayTasks tasks={tasks} />
             </ScrollView>
         </SafeAreaView>
     )

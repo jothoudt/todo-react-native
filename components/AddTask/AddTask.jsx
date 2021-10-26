@@ -57,11 +57,11 @@ const styles = StyleSheet.create({
         marginRight: "auto",
         marginTop: 5,
         borderRadius: 16,
-        elevation:3,
+        elevation: 3,
     },
     button_text: {
         fontSize: 16,
         color: "#F8F8F8",
-        fontWeight: 'bold',
+        fontWeight: "bold",
     }
 });

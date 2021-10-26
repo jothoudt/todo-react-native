@@ -11,7 +11,7 @@ function DisplayTasks({tasks}){
         let display=''
         //if there are no tasks or the tasks have not loaded yet
         if(!tasks || tasks.length === 0){
-            display= <h2>No tasks</h2>
+            display= <Text>No tasks</Text>
         }
         //if there are tasks, map through them and display them as rows in the table
         else{
@@ -29,15 +29,16 @@ function DisplayTasks({tasks}){
     //returns a table to display the tasks
     return(
         <View horizontal style={styles.container}>
-            <DataTable style={{width:"99%", marginTop:"25px",borderWidth:"1px", borderColor:"#1E3163"}}>
+            <DataTable style={{width:"99%", marginTop:25,borderWidth:1, borderColor:"#1E3163"}}>
                 <DataTable.Header style={{width:"100%", margin:0, padding:5,backgroundColor:"#1E3163"}}>
                     <DataTable.Title style={{width:"25%"}}><Text style={{color:"#F8F8F8"}}>Task</Text></DataTable.Title>
                     <DataTable.Title style={{width:"28%", color:"#f8f8f8"}}><Text style={{color:"#F8F8F8"}}>Date Added</Text></DataTable.Title>
                     <DataTable.Title style={{width:"32%", color:"#f8f8f8"}}><Text style={{color:"#F8F8F8"}}>Completed</Text></DataTable.Title>
-                    {/* <DataTable.Title>Date Completed</DataTable.Title> */}
                     <DataTable.Title style={{flex:.5,width:"15%", color:"#f8f8f8"}}> <Text style={{color:"#F8F8F8"}}>Delete</Text></DataTable.Title>
                 </DataTable.Header>
+                <View>
                 {displayAllTasks()}
+                </View>
             </DataTable>
             
         </View >
@@ -49,13 +50,13 @@ const styles = StyleSheet.create({
         // height: 300,
         fontSize: 10,
         width:"100%",
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: "#000000"
+        backgroundColor: '#F8F8F8',
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#000000",
       },
       table_text:{
-          color:"#f8f8f8"
+          color:"#f8f8f8",
       }
 });
 
